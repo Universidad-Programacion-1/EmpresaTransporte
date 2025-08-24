@@ -1,9 +1,11 @@
 package co.edu.uniquindio.TrabajoUno.model;
 
+import co.edu.uniquindio.TrabajoUno.services.IEmpresaTransporteServices;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class EmpresaTransporte {
+public class EmpresaTransporte implements IEmpresaTransporteServices {
     private String nombre;
     private List<VehiculoCarga> listaVehiculosCarga = new ArrayList<>();
     private List<VehiculoPasajero> listaVehiculosPasajeros = new ArrayList<>();
@@ -76,4 +78,61 @@ public class EmpresaTransporte {
         }
         return pasajeros;
     }
+
+    @Override
+    public boolean agregarPropietario(String nombre, String numeroIdentificacion, String email, String numeroCelular) {
+        Propietario propietario = obtenerPropietario(numeroIdentificacion);
+        if(propietario == null){
+            propietario = new Propietario();
+            propietario.setNombre(nombre);
+            propietario.setNumeroIdentificacion(numeroIdentificacion);
+            propietario.setEmail(email);
+            propietario.setNumeroCelular(numeroCelular);
+            getListaPropietarios().add(propietario);
+
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    @Override
+    public Propietario obtenerPropietario(String numeroIdentificacion) {
+        Propietario propietarioEncontrado = null;
+        for (Propietario propietario: getListaPropietarios()) {
+            if(propietario.getNumeroIdentificacion().equalsIgnoreCase(numeroIdentificacion)){
+                propietarioEncontrado = propietario;
+                break;
+            }
+        }
+
+        return propietarioEncontrado;
+    }
+
+    @Override
+    public boolean eliminarPropietario(String numeroIdentificacion) {
+        Propietario propietario = obtenerPropietario(numeroIdentificacion);
+        if(propietario != null){
+            getListaPropietarios().remove(propietario);
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    @Override
+    public boolean actualizarPropietario(String nombre, String numeroIdentificacionActual, String numeroIdentificacion, String email, String numeroCelular) {
+        Propietario propietario = obtenerPropietario(numeroIdentificacionActual);
+        if(propietario != null){
+            propietario.setNombre(nombre);
+            propietario.setNumeroIdentificacion(numeroIdentificacion);
+            propietario.setEmail(email);
+            propietario.setNumeroCelular(numeroCelular);
+
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 }

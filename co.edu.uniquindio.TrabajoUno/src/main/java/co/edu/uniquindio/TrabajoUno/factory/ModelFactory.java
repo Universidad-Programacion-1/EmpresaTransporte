@@ -1,10 +1,11 @@
 package co.edu.uniquindio.TrabajoUno.factory;
 
 import co.edu.uniquindio.TrabajoUno.model.*;
+import co.edu.uniquindio.TrabajoUno.services.IModelFactoryServices;
 
 import java.util.List;
 
-public class ModelFactory {
+public class ModelFactory implements IModelFactoryServices {
     private static ModelFactory instance;
     EmpresaTransporte empresaTransporte;
 
@@ -71,5 +72,35 @@ public class ModelFactory {
         return getEmpresaTransporte().propietarioMayo();
     }
 
+
+    @Override
+    public String buscarVehiculoCargaPlaca(String placa) {
+        return "";
+    }
+
+    @Override
+    public String buscarPropietarioNombre(String nombre) {
+        return "";
+    }
+
+    @Override
+    public boolean agregarPropietario(String nombre, String numeroIdentificacion, String email, String numeroCelular, int edad) {
+        return empresaTransporte.agregarPropietario(nombre, numeroIdentificacion, email, numeroCelular);
+    }
+
+    @Override
+    public Propietario obtenerPropietario(String numeroIdentificacion) {
+        return empresaTransporte.obtenerPropietario(numeroIdentificacion);
+    }
+
+    @Override
+    public boolean eliminarPropietario(String numeroIdentificacion) {
+        return empresaTransporte.eliminarPropietario(numeroIdentificacion);
+    }
+
+    @Override
+    public boolean actualizarPropietario(String nombre, String numeroIdentificacionActual, String numeroIdentificacion, String email, String numeroCelular) {
+        return empresaTransporte.actualizarPropietario(nombre, numeroIdentificacionActual, numeroIdentificacion, email, numeroCelular);
+    }
 }
 
