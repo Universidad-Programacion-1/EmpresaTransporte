@@ -85,7 +85,7 @@ public class ModelFactory implements IModelFactoryServices {
 
     @Override
     public boolean agregarPropietario(String nombre, String numeroIdentificacion, String email, String numeroCelular, int edad) {
-        return empresaTransporte.agregarPropietario(nombre, numeroIdentificacion, email, numeroCelular);
+        return empresaTransporte.agregarPropietario(nombre, numeroIdentificacion, email, numeroCelular, edad);
     }
 
     @Override

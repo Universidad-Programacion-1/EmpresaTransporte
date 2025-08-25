@@ -103,8 +103,7 @@ public class Main {
                     double capacidad = Double.parseDouble(JOptionPane.showInputDialog("Capacidad de carga:"));
                     int ejes = Integer.parseInt(JOptionPane.showInputDialog("Número de ejes:"));
 
-                    modelFactory.crearPropietarioVehiculoCarga(nombre, id, email, celular, edad,
-                            placa, modelo, marca, color, capacidad, ejes);
+                    modelFactory.agregarPropietario(nombre, id, email, celular, edad);
 
                     JOptionPane.showMessageDialog(null, "Propietario y vehículo creados exitosamente.");
                 }

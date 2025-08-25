@@ -80,7 +80,7 @@ public class EmpresaTransporte implements IEmpresaTransporteServices {
     }
 
     @Override
-    public boolean agregarPropietario(String nombre, String numeroIdentificacion, String email, String numeroCelular) {
+    public boolean agregarPropietario(String nombre, String numeroIdentificacion, String email, String numeroCelular, int edad) {
         Propietario propietario = obtenerPropietario(numeroIdentificacion);
         if(propietario == null){
             propietario = new Propietario();
@@ -88,6 +88,7 @@ public class EmpresaTransporte implements IEmpresaTransporteServices {
             propietario.setNumeroIdentificacion(numeroIdentificacion);
             propietario.setEmail(email);
             propietario.setNumeroCelular(numeroCelular);
+            propietario.setEdad(edad);
             getListaPropietarios().add(propietario);
 
             return true;
@@ -121,7 +122,8 @@ public class EmpresaTransporte implements IEmpresaTransporteServices {
     }
 
     @Override
-    public boolean actualizarPropietario(String nombre, String numeroIdentificacionActual, String numeroIdentificacion, String email, String numeroCelular) {
+    public boolean actualizarPropietario(String nombre, String numeroIdentificacionActual,
+                                         String numeroIdentificacion, String email, String numeroCelular) {
         Propietario propietario = obtenerPropietario(numeroIdentificacionActual);
         if(propietario != null){
             propietario.setNombre(nombre);
