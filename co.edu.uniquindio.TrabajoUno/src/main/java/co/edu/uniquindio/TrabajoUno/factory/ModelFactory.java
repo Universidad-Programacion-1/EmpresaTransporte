@@ -1,10 +1,11 @@
 package co.edu.uniquindio.TrabajoUno.factory;
 
 import co.edu.uniquindio.TrabajoUno.model.*;
+import co.edu.uniquindio.TrabajoUno.services.IModelFactoryServices;
 
 import java.util.List;
 
-public class ModelFactory {
+public class ModelFactory implements IModelFactoryServices {
     private static ModelFactory instance;
     EmpresaTransporte empresaTransporte;
 
@@ -71,5 +72,100 @@ public class ModelFactory {
         return getEmpresaTransporte().propietarioMayo();
     }
 
+
+    @Override
+    public String buscarVehiculoCargaPlaca(String placa) {
+        return "";
+    }
+
+    @Override
+    public String buscarPropietarioNombre(String nombre) {
+        return "";
+    }
+
+    @Override
+    public boolean agregarPropietario(String nombre, String numeroIdentificacion, String email, String numeroCelular, int edad) {
+        return empresaTransporte.agregarPropietario(nombre, numeroIdentificacion, email, numeroCelular, edad);
+    }
+
+    @Override
+    public Propietario obtenerPropietario(String numeroIdentificacion) {
+        return empresaTransporte.obtenerPropietario(numeroIdentificacion);
+    }
+
+    @Override
+    public boolean eliminarPropietario(String numeroIdentificacion) {
+        return empresaTransporte.eliminarPropietario(numeroIdentificacion);
+    }
+
+    @Override
+    public boolean actualizarPropietario(String nombre, String numeroIdentificacionActual, String numeroIdentificacion, String email, String numeroCelular, int edad) {
+        return empresaTransporte.actualizarPropietario(nombre, numeroIdentificacionActual, numeroIdentificacion, email, numeroCelular, edad);
+    }
+
+    @Override
+    public boolean agregarVehiculoPasajero(String placa, String modelo, String marca, String color, int numeroMaximoPasajeros) {
+        return empresaTransporte.actualizarVehiculoPasajero(placa,modelo,marca,color,numeroMaximoPasajeros);
+    }
+
+    @Override
+    public VehiculoPasajero obtenerVehiculoPasajero(String placa) {
+        return empresaTransporte.obtenerVehiculoPasajero(placa);
+    }
+
+    @Override
+    public boolean eliminarVehiculoPasajero(String placa) {
+        return empresaTransporte.eliminarVehiculoPasajero(placa);
+    }
+
+    @Override
+    public boolean actualizarVehiculoPasajero(String placa, String modelo, String marca, String color, int numeroMaximoPasajeros) {
+        return empresaTransporte.actualizarVehiculoPasajero(placa,modelo,marca,color,numeroMaximoPasajeros);
+    }
+
+    @Override
+    public boolean agregarUsuario(int edad, String numeroIdentificacion) {
+        return empresaTransporte.agregarUsuario(edad, numeroIdentificacion);
+    }
+
+    @Override
+    public Usuario obtenerUsuario(String numeroIdentificacion) {
+        return empresaTransporte.obtenerUsuario(numeroIdentificacion);
+    }
+
+    @Override
+    public boolean eliminarUsuario(String numeroIdentificacion) {
+        return empresaTransporte.eliminarUsuario(numeroIdentificacion);
+    }
+
+    @Override
+    public boolean actualizarUsuario(int edad, String numeroIdentificacion) {
+        return empresaTransporte.actualizarUsuario(edad, numeroIdentificacion);
+    }
+
+    @Override
+    public boolean agregarVehiculoCarga(String placa, String modelo, String marca,
+                                        String color, double capacidadCarga,
+                                        int numeroEjes) {
+        return empresaTransporte.agregarVehiculoCarga(placa, modelo, marca, color,
+                capacidadCarga, numeroEjes);
+    }
+
+    @Override
+    public VehiculoCarga obtenerVehiculoCarga(String placa) {
+        return empresaTransporte.obtenerVehiculoCarga(placa);
+    }
+
+    @Override
+    public boolean eliminarVehiculoCarga(String numeroIdentificacion) {
+        return empresaTransporte.eliminarUsuario(numeroIdentificacion);
+    }
+
+    @Override
+    public boolean actualizarVehiculoCarga(String placa, String modelo, String marca,
+                                           String color, double capacidadCarga, int numeroEjes) {
+        return empresaTransporte.actualizarVehiculoCarga(placa, modelo, marca,
+                color, capacidadCarga, numeroEjes);
+    }
 }
 
