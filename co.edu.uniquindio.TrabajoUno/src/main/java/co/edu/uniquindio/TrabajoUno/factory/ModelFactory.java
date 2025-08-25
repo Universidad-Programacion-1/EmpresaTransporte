@@ -102,5 +102,50 @@ public class ModelFactory implements IModelFactoryServices {
     public boolean actualizarPropietario(String nombre, String numeroIdentificacionActual, String numeroIdentificacion, String email, String numeroCelular) {
         return empresaTransporte.actualizarPropietario(nombre, numeroIdentificacionActual, numeroIdentificacion, email, numeroCelular);
     }
+
+    @Override
+    public boolean agregarUsuario(int edad, String numeroIdentificacion) {
+        return empresaTransporte.agregarUsuario(edad, numeroIdentificacion);
+    }
+
+    @Override
+    public Usuario obtenerUsuario(String numeroIdentificacion) {
+        return empresaTransporte.obtenerUsuario(numeroIdentificacion);
+    }
+
+    @Override
+    public boolean eliminarUsuario(String numeroIdentificacion) {
+        return empresaTransporte.eliminarUsuario(numeroIdentificacion);
+    }
+
+    @Override
+    public boolean actualizarUsuario(int edad, String numeroIdentificacion) {
+        return empresaTransporte.actualizarUsuario(edad, numeroIdentificacion);
+    }
+
+    @Override
+    public boolean agregarVehiculoCarga(String placa, String modelo, String marca,
+                                        String color, double capacidadCarga,
+                                        int numeroEjes) {
+        return empresaTransporte.agregarVehiculoCarga(placa, modelo, marca, color,
+                capacidadCarga, numeroEjes);
+    }
+
+    @Override
+    public VehiculoCarga obtenerVehiculoCarga(String placa) {
+        return empresaTransporte.obtenerVehiculoCarga(placa);
+    }
+
+    @Override
+    public boolean eliminarVehiculoCarga(String numeroIdentificacion) {
+        return empresaTransporte.eliminarUsuario(numeroIdentificacion);
+    }
+
+    @Override
+    public boolean actualizarVehiculoCarga(String placa, String modelo, String marca,
+                                           String color, double capacidadCarga, int numeroEjes) {
+        return empresaTransporte.actualizarVehiculoCarga(placa, modelo, marca,
+                color, capacidadCarga, numeroEjes);
+    }
 }
 
