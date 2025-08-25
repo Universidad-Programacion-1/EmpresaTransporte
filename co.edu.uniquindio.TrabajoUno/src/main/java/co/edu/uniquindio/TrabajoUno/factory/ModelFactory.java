@@ -102,5 +102,25 @@ public class ModelFactory implements IModelFactoryServices {
     public boolean actualizarPropietario(String nombre, String numeroIdentificacionActual, String numeroIdentificacion, String email, String numeroCelular) {
         return empresaTransporte.actualizarPropietario(nombre, numeroIdentificacionActual, numeroIdentificacion, email, numeroCelular);
     }
+
+    @Override
+    public boolean agregarVehiculoPasajero(String placa, String modelo, String marca, String color, int numeroMaximoPasajeros) {
+        return empresaTransporte.actualizarVehiculoPasajero(placa,modelo,marca,color,numeroMaximoPasajeros);
+    }
+
+    @Override
+    public VehiculoPasajero obtenerVehiculoPasajero(String placa) {
+        return empresaTransporte.obtenerVehiculoPasajero(placa);
+    }
+
+    @Override
+    public boolean eliminarVehiculoPasajero(String placa) {
+        return empresaTransporte.eliminarVehiculoPasajero(placa);
+    }
+
+    @Override
+    public boolean actualizarVehiculoPasajero(String placa, String modelo, String marca, String color, int numeroMaximoPasajeros) {
+        return empresaTransporte.actualizarVehiculoPasajero(placa,modelo,marca,color,numeroMaximoPasajeros);
+    }
 }
 

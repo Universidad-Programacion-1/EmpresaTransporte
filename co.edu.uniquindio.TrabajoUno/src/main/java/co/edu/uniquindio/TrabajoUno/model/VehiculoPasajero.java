@@ -19,6 +19,7 @@ public class VehiculoPasajero extends Vehiculo {
         this.numeroMaximoPasajeros = numeroMaximoPasajeros;
     }
 
+
     @Override
     public void encender() {
         System.out.println("No me encendio......ayuda");
