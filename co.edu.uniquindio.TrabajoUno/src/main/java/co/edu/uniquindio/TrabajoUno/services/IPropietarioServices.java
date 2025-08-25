@@ -20,6 +20,7 @@ public interface IPropietarioServices {
                                   String numeroIdentificacionActual,
                                   String numeroIdentificacion,
                                   String email,
-                                  String numeroCelular);
+                                  String numeroCelular,
+                                  int edad);
 
 }

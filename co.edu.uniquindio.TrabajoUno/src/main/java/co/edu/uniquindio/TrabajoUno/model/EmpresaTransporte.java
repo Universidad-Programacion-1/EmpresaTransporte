@@ -10,6 +10,7 @@ public class EmpresaTransporte implements IEmpresaTransporteServices {
     private List<VehiculoCarga> listaVehiculosCarga = new ArrayList<>();
     private List<VehiculoPasajero> listaVehiculosPasajeros = new ArrayList<>();
     private List<Propietario> listaPropietarios = new ArrayList<>();
+    private List<Usuario> listaUsuarios = new ArrayList<>();
 
     public EmpresaTransporte() {}
 
@@ -19,6 +20,7 @@ public class EmpresaTransporte implements IEmpresaTransporteServices {
     public List<VehiculoCarga> getListaVehiculosCarga() { return listaVehiculosCarga; }
     public List<VehiculoPasajero> getListaVehiculosPasajeros() { return listaVehiculosPasajeros; }
     public List<Propietario> getListaPropietarios() { return listaPropietarios; }
+    public List<Usuario> getListaUsuarios() {return listaUsuarios;}
 
     // Crear propietario con vehículo de carga
     public void crearPropietarioVehiculoCarga(String nombre, String id, String email, String celular, int edad,
@@ -123,13 +125,14 @@ public class EmpresaTransporte implements IEmpresaTransporteServices {
 
     @Override
     public boolean actualizarPropietario(String nombre, String numeroIdentificacionActual,
-                                         String numeroIdentificacion, String email, String numeroCelular) {
+                                         String numeroIdentificacion, String email, String numeroCelular, int edad) {
         Propietario propietario = obtenerPropietario(numeroIdentificacionActual);
         if(propietario != null){
             propietario.setNombre(nombre);
             propietario.setNumeroIdentificacion(numeroIdentificacion);
             propietario.setEmail(email);
             propietario.setNumeroCelular(numeroCelular);
+            propietario.setEdad(edad);
 
             return true;
         }else{
@@ -137,15 +140,122 @@ public class EmpresaTransporte implements IEmpresaTransporteServices {
         }
     }
 
-    public boolean crearVehiculoPasajero(VehiculoPasajero vehiculoPasajero) {
-        boolean centinela = false;
-        if (vehiculoPasajero != null) {
-            VehiculoPasajero vehiculoPasajero1 = new VehiculoPasajero();
-            listaVehiculosPasajeros.add(vehiculoPasajero1);
-            centinela = true;
+    @Override
+    public boolean agregarUsuario(int edad, String numeroIdentificacion) {
+        Usuario usuario = obtenerUsuario(numeroIdentificacion);
+        if(usuario == null){
+            usuario = new Usuario();
+            usuario.setEdad(edad);
+            usuario.setNumeroIdentificacion(numeroIdentificacion);
+            getListaUsuarios().add(usuario);
+
+            return true;
+        }else{
+            return false;
         }
-        return centinela;
     }
+
+    @Override
+    public Usuario obtenerUsuario(String numeroIdentificacion) {
+        Usuario usuarioEncontrado = null;
+        for (Usuario usuario: getListaUsuarios()) {
+            if(usuario.getNumeroIdentificacion().equalsIgnoreCase(numeroIdentificacion)){
+                usuarioEncontrado = usuario;
+                break;
+            }
+        }
+
+        return usuarioEncontrado;
+    }
+
+    @Override
+    public boolean eliminarUsuario(String numeroIdentificacion) {
+        Usuario usuario = obtenerUsuario(numeroIdentificacion);
+        if(usuario != null){
+            getListaUsuarios().remove(usuario);
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    @Override
+    public boolean actualizarUsuario(int edad, String numeroIdentificacion) {
+        Usuario usuario = obtenerUsuario(numeroIdentificacion);
+        if(usuario != null){
+            usuario.setEdad(edad);
+            usuario.setNumeroIdentificacion(numeroIdentificacion);
+
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    @Override
+    public boolean agregarVehiculoCarga(String placa, String modelo, String marca,
+                                        String color, double capacidadCarga,
+                                        int numeroEjes) {
+        VehiculoCarga vehiculoCarga = obtenerVehiculoCarga(placa);
+        if(vehiculoCarga == null){
+            vehiculoCarga = new VehiculoCarga();
+            vehiculoCarga.setPlaca(placa);
+            vehiculoCarga.setModelo(modelo);
+            vehiculoCarga.setMarca(marca);
+            vehiculoCarga.setColor(color);
+            vehiculoCarga.setCapacidadCarga(capacidadCarga);
+            vehiculoCarga.setNumeroEjes(numeroEjes);
+            getListaVehiculosCarga().add(vehiculoCarga);
+
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    @Override
+    public VehiculoCarga obtenerVehiculoCarga(String placa) {
+        VehiculoCarga vehiculoCargaEncontrado = null;
+        for (VehiculoCarga vehiculoCarga: getListaVehiculosCarga()) {
+            if(vehiculoCarga.getPlaca().equalsIgnoreCase(placa)){
+                vehiculoCargaEncontrado = vehiculoCarga;
+                break;
+            }
+        }
+
+        return vehiculoCargaEncontrado;
+    }
+
+    @Override
+    public boolean eliminarVehiculoCarga(String placa) {
+        VehiculoCarga vehiculoCarga = obtenerVehiculoCarga(placa);
+        if(vehiculoCarga != null){
+            getListaVehiculosCarga().remove(vehiculoCarga);
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    @Override
+    public boolean actualizarVehiculoCarga(String placa, String modelo, String marca,
+                                     String color, double capacidadCarga,
+                                     int numeroEjes) {
+        VehiculoCarga vehiculoCarga = obtenerVehiculoCarga(placa);
+        if(vehiculoCarga != null){
+            vehiculoCarga.setPlaca(placa);
+            vehiculoCarga.setModelo(modelo);
+            vehiculoCarga.setMarca(marca);
+            vehiculoCarga.setColor(color);
+            vehiculoCarga.setCapacidadCarga(capacidadCarga);
+            vehiculoCarga.setNumeroEjes(numeroEjes);
+
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     @Override
     public boolean eliminarVehiculoPasajero(String placa) {
         VehiculoPasajero vehiculoPasajero = obtenerVehiculoPasajero(placa);
